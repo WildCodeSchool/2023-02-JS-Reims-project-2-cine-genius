@@ -77,6 +77,16 @@ input[type="radio"] {
   transform: translateY(0.125rem);
 }
 
-.trailer {
+.tittle {
+  color: white;
+  margin-right: 20px;
+}
+
+.img {
+  width: 150px;
+  margin-right: 20px;
+}
+
+.synopsis {
   color: white;
 }

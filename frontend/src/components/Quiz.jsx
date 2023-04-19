@@ -32,8 +32,10 @@ function Quiz() {
   };
 
   const fetchRandomMovie = async () => {
+    const maxPages = 200;
+    const randomPage = Math.floor(Math.random() * maxPages) + 1;
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=4376a0d52370c8fe44da849d510c9a86&page=1`
+      `https://api.themoviedb.org/3/discover/movie?api_key=4376a0d52370c8fe44da849d510c9a86&language=fr-FR&page=${randomPage}`
     );
     const data = await response.json();
     const randomIndex = Math.floor(Math.random() * data.results.length);
@@ -76,13 +78,14 @@ function Quiz() {
 
   return quizFinished && randomMovie ? (
     <div className="random-movie">
-      <h2>{randomMovie.title}</h2>
+      <h2 className="tittle">{randomMovie.title}</h2>
       <img
+        className="img"
         src={`https://image.tmdb.org/t/p/w500${randomMovie.poster_path}`}
         alt={`${randomMovie.title} poster`}
       />
       <div className="movie-details">
-        <p className="trailer">{randomMovie.overview}</p>
+        <p className="synopsis">{randomMovie.overview}</p>
         {randomMovie.trailer && (
           <iframe
             width="560"
