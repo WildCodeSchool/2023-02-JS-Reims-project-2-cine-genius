@@ -88,7 +88,7 @@ function Quiz() {
         <p className="synopsis">{randomMovie.overview}</p>
         {randomMovie.trailer && (
           <iframe
-            width="560"
+            width="400"
             height="315"
             src={`https://www.youtube.com/embed/${randomMovie.trailer.key}`}
             title={`${randomMovie.title} Trailer`}

@@ -21,7 +21,6 @@ const questions = [
     options: ["-3 ans", "-5 ans", "-10 ans", "-20 ans", "+20 ans"],
   },
 ];
-
 // Créez une route pour récupérer les questions
 router.get("/questions", (req, res) => {
   res.json(questions);
