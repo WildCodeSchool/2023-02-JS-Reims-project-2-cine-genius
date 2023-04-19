@@ -21,27 +21,82 @@ function Quiz() {
     },
   ];
 
-  // Définir l'état local pour l'index de la question actuelle et la réponse de l'utilisateur
+  const [quizFinished, setQuizFinished] = useState(false);
+  const [randomMovie, setRandomMovie] = useState(null);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
 
-  // Gérer le changement de réponse de l'utilisateur
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
 
-  // Gérer le clic sur le bouton pour passer à la question suivante
-  const handleNextClick = () => {
-    if (selectedOption !== null && currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-      setSelectedOption(null);
-    }
+  const fetchRandomMovie = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=4376a0d52370c8fe44da849d510c9a86&page=1`
+    );
+    const data = await response.json();
+    const randomIndex = Math.floor(Math.random() * data.results.length);
+    const movie = data.results[randomIndex];
+
+    // Synopsis
+    const detailsResponse = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie.id}?api_key=4376a0d52370c8fe44da849d510c9a86&language=fr-FR`
+    );
+    const details = await detailsResponse.json();
+
+    // Trailer
+    const videosResponse = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=4376a0d52370c8fe44da849d510c9a86&language=fr-FR`
+    );
+    const videosData = await videosResponse.json();
+    const trailer = videosData.results.find(
+      (video) => video.type === "Trailer" && video.site === "YouTube"
+    );
+
+    return {
+      ...details,
+      trailer,
+    };
   };
 
-  // Obtenir la question et les options pour l'index de la question actuelle
+  const handleNextClick = async () => {
+    if (selectedOption !== null) {
+      if (currentQuestion < questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+        setSelectedOption(null);
+      } else {
+        setQuizFinished(true);
+        const movie = await fetchRandomMovie();
+        setRandomMovie(movie);
+      }
+    }
+  };
   const { text, options } = questions[currentQuestion];
 
-  return (
+  return quizFinished && randomMovie ? (
+    <div className="random-movie">
+      <h2>{randomMovie.title}</h2>
+      <img
+        src={`https://image.tmdb.org/t/p/w500${randomMovie.poster_path}`}
+        alt={`${randomMovie.title} poster`}
+      />
+      <div className="movie-details">
+        <p className="trailer">{randomMovie.overview}</p>
+        {randomMovie.trailer && (
+          <iframe
+            width="560"
+            height="315"
+            src={`https://www.youtube.com/embed/${randomMovie.trailer.key}`}
+            title={`${randomMovie.title} Trailer`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
+      </div>
+    </div>
+  ) : (
     <form className="questionaire">
       <h2 className="Question">{text}</h2>
       <ul>

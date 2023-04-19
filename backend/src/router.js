@@ -4,14 +4,27 @@ const router = express.Router();
 
 const itemControllers = require("./controllers/itemControllers");
 
-const questionsList = [
-  { id: 1, name: "quel genre de film aimez-vous ?" },
-  { id: 2, name: "deuxieme question" },
-  { id: 3, name: "3 eme question " },
+const questions = [
+  {
+    id: 1,
+    text: "Quelle occasion ?",
+    options: ["Entre famille", "Entre amis", "Date", "Solo"],
+  },
+  {
+    id: 2,
+    text: "Quel genre de film ?",
+    options: ["Action", "Comédie", "Horreur", "Romance"],
+  },
+  {
+    id: 3,
+    text: "Date de publication",
+    options: ["-3 ans", "-5 ans", "-10 ans", "-20 ans", "+20 ans"],
+  },
 ];
 
+// Créez une route pour récupérer les questions
 router.get("/questions", (req, res) => {
-  res.json(questionsList);
+  res.json(questions);
 });
 
 router.get("/items", itemControllers.browse);
