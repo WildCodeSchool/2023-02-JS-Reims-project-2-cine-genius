@@ -46,6 +46,10 @@ function Movie() {
     fetchMovies();
   }, []);
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   return (
     <div>
       {randomMovie && (
@@ -57,6 +61,7 @@ function Movie() {
             alt={randomMovie.title}
           />
           <p>{randomMovie.overview}</p>
+          <button onClick={refreshPage}>autre subjection</button>
           {trailer && (
             <div>
               <h3>Trailer:</h3>
