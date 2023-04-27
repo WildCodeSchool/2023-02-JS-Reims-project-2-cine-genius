@@ -50,13 +50,13 @@ function Movie() {
     <div>
       {randomMovie && (
         <div className="text">
-          <h2>{randomMovie.title}</h2>
+          <h2 className="titlemovie">{randomMovie.title}</h2>
           <img
             className="img"
             src={`https://image.tmdb.org/t/p/w500${randomMovie.poster_path}`}
             alt={randomMovie.title}
           />
-          <p>{randomMovie.overview}</p>
+          <p className="synopsis">{randomMovie.overview}</p>
           {trailer && (
             <div>
               <h3>Trailer:</h3>
