@@ -14,7 +14,6 @@ iframe {
 
 .synopsis {
   font-family: "roboto";
-  font-family: ubuntu sans-serif;
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 50px;
@@ -23,6 +22,5 @@ iframe {
 
 .titlemovie {
   font-family: "ubuntu";
-  font-family: roboto sans-serif;
   font-size: 30px;
 }
