@@ -4,7 +4,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <div className="Footer">
-      <section>n</section>
+      <section>.</section>
     </div>
   );
 }
