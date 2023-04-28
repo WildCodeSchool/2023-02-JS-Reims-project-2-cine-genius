@@ -9,13 +9,20 @@
 }
 
 iframe {
-  width: 350px;
+  width: 360px;
 }
 
 .synopsis {
   font-family: "roboto";
+  font-family: ubuntu sans-serif;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 50px;
+  font-size: 20px;
 }
 
 .titlemovie {
   font-family: "ubuntu";
+  font-family: roboto sans-serif;
+  font-size: 30px;
 }
