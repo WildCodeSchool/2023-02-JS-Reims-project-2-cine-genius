@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 function Movie() {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [index, setIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const [trailer, setTrailer] = useState(null);
   const location = useLocation();
   const { quizResponses } = location.state;
@@ -96,7 +95,6 @@ function Movie() {
       });
 
       setFilteredMovies(filteredMoviesG);
-      setIsLoading(false);
     };
 
     fetchMovies();
@@ -132,38 +130,33 @@ function Movie() {
 
   return (
     <div className="main">
-      {isLoading ? (
-        <p>Chargement en cours...</p>
-      ) : (
-        filteredMovies &&
-        filteredMovies[index] && (
-          <div key={filteredMovies[index].id} className="text">
-            <h2 className="n">{filteredMovies[index].title}</h2>
+      {filteredMovies && filteredMovies[index] && (
+        <div key={filteredMovies[index].id} className="text">
+          <h2>{filteredMovies[index].title}</h2>
+          <div className="n">
             <img
               className="img"
               src={`https://image.tmdb.org/t/p/w500${filteredMovies[index].poster_path}`}
               alt={filteredMovies[index].title}
             />
             <p>{filteredMovies[index].overview}</p>
-            <button type="button" onClick={refreshPage}>
-              <span>autre suggestion</span>
-            </button>
-            {trailer && (
-              <div>
-                <h3>Trailer:</h3>
-                <iframe
-                  width="560"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${trailer}`}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            )}
           </div>
-        )
+          <button type="button" onClick={refreshPage}>
+            <span>autre suggestion</span>
+          </button>
+          {trailer && (
+            <div>
+              <h3>Trailer:</h3>
+              <iframe
+                src={`https://www.youtube.com/embed/${trailer}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          )}
+        </div>
       )}
     </div>
   );

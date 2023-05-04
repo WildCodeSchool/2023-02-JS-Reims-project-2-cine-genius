@@ -6,6 +6,7 @@
   .caroussel-container {
     display: block;
     margin-top: 15px;
+    margin-bottom: 110px;
   }
   .caroussel-image {
     max-width: 800px; /* Ajustez la largeur maximale en pixels */
