@@ -1,3 +1,4 @@
+/* Mobile first  */
 * {
   padding: 0;
   margin: 0;
@@ -39,6 +40,7 @@
 }
 
 @keyframes slideIn {
+  /* Animation */
   from {
     opacity: 0;
     transform: translateX(100%) translateY(-200%) scale(0.3);
@@ -100,8 +102,9 @@
   border-radius: 18px;
   border: 1px solid #cfcece;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) /* version Desktop*/ {
   .modal {
+    /*Popup*/
     padding: 0;
     height: 20%;
     display: flex;
@@ -109,6 +112,7 @@
     justify-content: center;
   }
   .modal > .content {
+    /*in container */
     margin-bottom: 80px;
   }
 }
