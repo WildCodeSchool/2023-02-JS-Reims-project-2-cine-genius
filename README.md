@@ -1,3 +1,6 @@
+## CineGenius
+Our project is a web application built using the React-Express stack, with a focus on generating movie recommendations based on user preferences. We used a pre-configured template as a foundation to produce industry-quality and easy-to-maintain code. Although we currently do not utilize a database, the application utilizes the TMDB API to retrieve movie data.
+
 ## Concept
 
 This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
